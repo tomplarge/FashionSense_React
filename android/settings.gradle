@@ -1,0 +1,3 @@
+rootProject.name = 'FashionSense_React'
+
+include ':app'
