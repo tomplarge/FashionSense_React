@@ -111,7 +111,7 @@
 //       Alert.alert('No image to send')
 //     }
 //     else{
-       fetch('http://ec2-54-89-75-135.compute-1.amazonaws.com/api/classification',{
+       fetch('http://ec2-54-209-250-64.compute-1.amazonaws.com/api/classification',{
          method: 'POST',
          headers: {
            'Content-Type': 'image/jpeg',
@@ -122,7 +122,7 @@
        })
        .then((response) => response.json())
        .then((data) => {
-         console.log(data);
+         console.log(response)
        })
      //}
    }
