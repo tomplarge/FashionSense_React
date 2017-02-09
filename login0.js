@@ -8,6 +8,7 @@ import {
     TouchableWithoutFeedback,
     Image,
     PixelRatio,
+    Alert
 } from "react-native";
 
 import React, {Component} from "react";
@@ -17,6 +18,7 @@ import Dimensions from 'Dimensions';
 import {Akira} from "react-native-textinput-effects";
 import DismissKeyboard from "dismissKeyboard";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import Home0 from "./home0"
 var s = require("./styles");
 
 export default class Login0 extends Component {
@@ -28,19 +30,27 @@ export default class Login0 extends Component {
         email: "",
         password: "",
         response: ""
-      }
+      };
 
       this.signup = this.signup.bind(this)
       this.login = this.login.bind(this)
+      this.itemsRef = firebase.database().ref();
     }
 
     async signup() {
 
-      DismissKeyboard(); //maybe?
+      DismissKeyboard();
 
       try {
           await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+          try {
+            this.itemsRef.push({uid: "0LS4HogwucNF5iGOOzs89hZ5LF33", mobile: "3176503226"})
+            DismissKeyboard();
+          }
 
+          catch(error){
+            Alert.alert(error)
+          }
           this.setState({
             response :"Account Created"
           })
@@ -57,7 +67,6 @@ export default class Login0 extends Component {
 
       try {
         await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
-
         console.log("Logged In!");
 
       }

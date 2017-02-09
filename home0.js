@@ -25,16 +25,61 @@ export default class Home0 extends Component{
       super(props);
 
       this.state = {
-          imageSource: null
+          imageSource: null,
+          uid: "0LS4HogwucNF5iGOOzs89hZ5LF33",
+          mobile: "3176503226",
+          mobileForm: "3176503226"
       };
+
+      this.logout = this.logout.bind(this);
+      this.saveMobile = this.saveMobile.bind(this);
   };
 
-  static get defaultProps(){
+
+  static get defaultProps(){ //change!!!!
     return {
       title: 'Home0'
     }
   }
 
+  async logout(){
+    try{
+      await firebase.auth().signout();
+    }
+
+    catch(error) {
+      consol.log(error)
+    }
+  }
+
+  saveMobile() {
+
+    if(this.state.uid && this.state.mobileForm) {
+      Database.setUserMobile(this.state.uid,this.state.mobileForm);
+      DismissKeyboard();
+    }
+  }
+  async componentDidMount() {
+    try {
+
+      let user = await firebase.auth().currentUser;
+
+      Database.listenUserMobile(user,uid,(mobileNumber) => {
+        this.setState({
+          mobile: mobileNumber,
+          mobileForm: mobileNumber
+        });
+      });
+
+      this.setState({
+        uid:user.uid
+      });
+    }
+    catch(error) {
+      console.log(error);
+    }
+
+  }
   selectPhotoTapped() {
     const options = {
       quality: 1.0,
@@ -96,30 +141,60 @@ export default class Home0 extends Component{
       })
   }
 
-  render(){
-    return(
-      <View>
-        <Image style = {s.background_image} source={require('./Background_White.png')}>
-          <View>
-            <TouchableHighlight underlayColor = {'blue'} activeOpacity = {300} style = {s.sense} onPress={this.selectPhotoTapped.bind(this)}>
-              <View>
-                { this.state.ImageSource === null ? null:
-                    <Image style={s.avatar} source={this.state.ImageSource} />
-                }
-              </View>
-            </TouchableHighlight>
-          </View>
-          <View>
-            <TouchableHighlight underlayColor = {'blue'} activeOpacity = {300} style = {s.profile} onPress={this.selectPhotoTapped.bind(this)}>
-              <View>
-                { this.state.ImageSource === null ? null:
-                    <Image style={s.avatar} source={this.state.ImageSource} />
-                }
-              </View>
-            </TouchableHighlight>
-          </View>
-        </Image>
-      </View>
-    );
+  // render(){
+  //   return(
+  //     <View>
+  //       <Image style = {s.background_image} source={require('./Background_White.png')}>
+  //         <View>
+  //           <TouchableHighlight underlayColor = {'blue'} activeOpacity = {300} style = {s.sense} onPress={this.selectPhotoTapped.bind(this)}>
+  //             <View>
+  //               { this.state.ImageSource === null ? null:
+  //                   <Image style={s.avatar} source={this.state.ImageSource} />
+  //               }
+  //             </View>
+  //           </TouchableHighlight>
+  //         </View>
+  //         <View>
+  //           <TouchableHighlight underlayColor = {'blue'} activeOpacity = {300} style = {s.profile} onPress={this.selectPhotoTapped.bind(this)}>
+  //             <View>
+  //               { this.state.ImageSource === null ? null:
+  //                   <Image style={s.avatar} source={this.state.ImageSource} />
+  //               }
+  //             </View>
+  //           </TouchableHighlight>
+  //         </View>
+  //       </Image>
+  //     </View>    render() {
+      render(){
+          return (
+              <TouchableWithoutFeedback onPress={() => {DismissKeyboard()}}>
+                  <View style={CommonStyle.container}>
+                      <Text style={styles.heading}>Hello UserId: {this.state.uid}</Text>
+                      <Text style={styles.heading}>Mobile Number (From Database): {this.state.mobile}</Text>
+                      <View style={styles.form}>
+                          <Hideo
+                              //iconClass={FontAwesomeIcon}
+                              iconName={"mobile"}
+                              iconColor={"white"}
+                              iconBackgroundColor={"#f2a59d"}
+                              inputStyle={{ color: "#464949"}}
+                              value={this.state.mobileForm}
+                              onChangeText={(mobileForm) => this.setState({mobileForm})}
+                          />
+                          <Button onPress={this.saveMobile} style={CommonStyle.buttons} textStyle={{fontSize: 18}}>
+                              Save
+                          </Button>
+                      </View>
+                      <View style={styles.logout}>
+                          <Button onPress={this.logout} style={CommonStyle.buttons} textStyle={{fontSize: 18}}>
+                              Logout
+                          </Button>
+                      </View>
+                  </View>
+              </TouchableWithoutFeedback>
+            )
   }
 }
+//     );
+//   }
+// }
