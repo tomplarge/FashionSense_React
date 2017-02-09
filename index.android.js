@@ -122,7 +122,7 @@
        })
        .then((response) => response.json())
        .then((data) => {
-         console.log(response)
+         Alert.alert(data.classification)
        })
      //}
    }
@@ -166,8 +166,8 @@
    },
    avatar: {
      borderRadius: 75,
-     width: 150,
-     height: 150
+     width: 300,
+     height: 300
    }
  });
 

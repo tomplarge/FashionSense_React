@@ -26,6 +26,8 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		E40DEBCA1E43015D00A3F3E3 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E40DEBC91E43011400A3F3E3 /* libRCTCameraRoll.a */; };
+		E42100C11E4C25940083A6A3 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = E42100C01E4C25940083A6A3 /* Fonts */; };
+		E42100DE1E4C267E0083A6A3 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E42100DD1E4C267E0083A6A3 /* FontAwesome.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -253,6 +255,8 @@
 		C0F387B3428045959C414594 /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		E08B9AB9EEDC4A2CAE63CBCF /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		E40DEBC41E43011300A3F3E3 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "/Users/tomlarge/Desktop/FashionSense/FashionSense_React/node_modules/react-native/Libraries/ActionSheetIOS/../CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<absolute>"; };
+		E42100C01E4C25940083A6A3 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
+		E42100DD1E4C267E0083A6A3 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -443,10 +447,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E42100DD1E4C267E0083A6A3 /* FontAwesome.ttf */,
 				13B07FAE1A68108700A75B9A /* FashionSense_React */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FashionSense_ReactTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				E42100C01E4C25940083A6A3 /* Fonts */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -808,8 +814,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E42100C11E4C25940083A6A3 /* Fonts in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				E42100DE1E4C267E0083A6A3 /* FontAwesome.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
