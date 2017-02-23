@@ -20,11 +20,16 @@ ImagePickerIOS,
 Navigator,
 } from 'react-native';
 
-import * as firebase from "firebase";
-import Home0 from "./home0";
-import Login0 from "./login0";
-import Firebase from "./firebase"
+import { Router, Scene } from 'react-native-router-flux';
 
+import * as firebase from "firebase";
+//import Home0 from "./home0";
+import Login from "./login";
+import Home from "./home"
+import Home0 from "./home0"
+import Home1 from "./home1";
+import Firebase from "./firebase"
+import ForMe from "./forMe";
 
 class FashionSense_React extends Component {
   constructor(props) { //added
@@ -33,31 +38,23 @@ class FashionSense_React extends Component {
       Firebase.initialise();
 
       this.state = {
-          initialView: "Login0"
+          initialView: "Login"
       };
   };
 
   renderScene(route,navigator) {
-    return (<Login0 navigator={navigator} />);
+    return (<Login navigator={navigator} />);
   }
 
   render() {
     return (
-      <Navigator
-        initialRoute = {{title: this.state.initialView}}
-        renderScene = {this.renderScene}
-      />);
-
-        //  <AwesomeButton states={{
-        //                   default: {
-        //                     text: 'Sense it!',
-        //                     onPress: this.onButtonPress.bind(this),
-        //                     backgroundColor: '#1DCCE6',
-        //                   }
-        //                  }} />
-      //</View>
-
-  //);
+      <Router>
+        <Scene key = 'root'>
+          <Scene key = 'login' component = {Login} initial = {true} hideNavBar = {true}/>
+          <Scene key = 'home' component = {Home1} hideNavBar = {true}/>
+        </Scene>
+      </Router>
+    )
   }
 }
 

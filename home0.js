@@ -48,7 +48,7 @@ export default class Home0 extends Component{
     }
 
     catch(error) {
-      consol.log(error)
+      console.log(error)
     }
   }
 
@@ -193,7 +193,7 @@ export default class Home0 extends Component{
                   </View>
               </TouchableWithoutFeedback>
             )
-  }
+      }
 }
 //     );
 //   }
