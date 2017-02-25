@@ -29,7 +29,7 @@ import Home from "./home"
 import Home0 from "./home0"
 import Home1 from "./home1";
 import Firebase from "./firebase"
-import ForMe from "./forMe";
+import HomeScroll from "./homescroll";
 
 class FashionSense_React extends Component {
   constructor(props) { //added
@@ -38,20 +38,18 @@ class FashionSense_React extends Component {
       Firebase.initialise();
 
       this.state = {
-          initialView: "Login"
+          initialView: "Login",
+          segTab: 0
       };
   };
-
-  renderScene(route,navigator) {
-    return (<Login navigator={navigator} />);
-  }
 
   render() {
     return (
       <Router>
         <Scene key = 'root'>
           <Scene key = 'login' component = {Login} initial = {true} hideNavBar = {true}/>
-          <Scene key = 'home' component = {Home1} hideNavBar = {true}/>
+          <Scene key = 'home' component = {Home1} initial = {false} hideNavBar = {true}/>
+          <Scene key = 'homescroll' component = {HomeScroll} initial = {false} hideNavBar = {true} />
         </Scene>
       </Router>
     )

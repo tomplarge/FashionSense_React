@@ -1,11 +1,13 @@
 import React, {Component} from "react";
-import {Text, View, Image} from "react-native";
+import {Text, View, Image, AlertIOS} from "react-native";
 import GridView from "react-native-easy-grid-view";
 
 
 var ds = new GridView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 var img_per_row = 2;
+var go = 0;
 const wdbg_img = require('./wardrobe.jpg')
+const wdbg_img2 = require('./modernwardrobe1.jpg')
 
 export default class ForMe extends Component{
     constructor(props) {
@@ -14,6 +16,7 @@ export default class ForMe extends Component{
         forMedataSource: ds.cloneWithCells([
             {
                 text: 4,
+                image:wdbg_img2,
             }
             , {
                 text: 2,
@@ -71,10 +74,22 @@ export default class ForMe extends Component{
 
               },
             ], img_per_row),
-            cellWidth: 0,
-            cellHeight: 0
-      };
-    }
+      newData: ds.cloneWithCells([
+            {
+                text: 4,
+            }, {
+                text: 2,
+                image: wdbg_img,
+
+            }, {
+                text: 3,
+                backgroundColor:'#00f'
+            },
+          ], img_per_row),
+          cellWidth: 0,
+          cellHeight: 0
+    };
+  }
 
     renderCell(cell) {
         return <View onLayout={event => {
@@ -93,23 +108,39 @@ export default class ForMe extends Component{
         </View>
     }
 
+    handleScroll() {
+        console.log(2)
+    }
+
     render() {
-      if (this.props.segTab == 0){
+      if (go){
+        return(
+          <GridView dataSource={this.state.newData}
+                    spacing={8}
+                    style={{padding:0}}
+                    renderCell={this.renderCell.bind(this)}
+                    onEndReached = {() => this.handleScroll()}
+          />
+        )
+      }
+
+      else if (this.props.segTab == 0){
         return(
           <GridView dataSource={this.state.forMedataSource}
                     spacing={8}
                     style={{padding:0}}
                     renderCell={this.renderCell.bind(this)}
-
+                    onEndReached = {() => this.handleScroll()}
           />
         )
       }
-      else if (this.props.segTab == 1){
+      else{
         return(
           <GridView dataSource={this.state.featureddataSource}
                     spacing={8}
                     style={{padding:0}}
                     renderCell={this.renderCell.bind(this)}
+                    onEndReached = {() => this.handleScroll()}
           />
         )
       }

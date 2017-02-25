@@ -21,14 +21,13 @@ import {
 import Dimensions from 'Dimensions'
 import Icon from "react-native-vector-icons/MaterialIcons"
 import {CustomSegmentedControl} from 'react-native-custom-segmented-control'
-import ForMe from './forMe';
+import HomeScroll from './homescroll';
 import GridView from "react-native-easy-grid-view";
 
 var ds = new GridView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 var img_per_row = 2;
 
 const wdbg_img = require('./wardrobe.jpg')
-const { render } = ForMe;
 const s = require("./styles")
 
 const {height,width} = Dimensions.get('window');
@@ -199,7 +198,7 @@ export default class Home1 extends Component{
           />
         </View>
         <View style = {{width: width, height: height-70,top:50}}>
-          <ForMe segTab = {this.state.segTab}/>
+          <HomeScroll segTab = {this.state.segTab} />
         </View>
       </View>
     );
