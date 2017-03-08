@@ -11,14 +11,18 @@ import Dimensions from 'Dimensions';
 module.exports = StyleSheet.create({
   login_container: {
       flex: 1,
-      justifyContent: 'space-between',
+      justifyContent: 'center',
       alignItems: 'center',
-      margin: 150
+      margin: Dimensions.get('window').height/4
       //paddingTop: 50
+  },
+  navBar:{
+    backgroundColor: 'white',
   },
   login_input_container: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height/13,
+    height: 50,
+    backgroundColor: 'red'
   },
   login_email: { //not quite aligned, but good enough for now
     //alignSelf: 'center',
@@ -44,6 +48,7 @@ module.exports = StyleSheet.create({
     height: Dimensions.get('window').height/13,
     backgroundColor: "white",
     borderRadius: 0,
+    marginBottom:10,
   },
   login_response: {
       textAlign: "center",

@@ -43,42 +43,43 @@ export default class Login0 extends Component {
     async signup() {
 
       DismissKeyboard();
-
-      try {
-          await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-          try {
-            this.itemsRef.push({uid: "0LS4HogwucNF5iGOOzs89hZ5LF33", mobile: "3176503226"})
-            DismissKeyboard();
-
-            Actions.home();
-          }
-
-          catch(error){
-            Alert.alert(error)
-          }
-          this.setState({
-            response :"Account Created"
-          })
-      }
-
-      catch (error) {
-          this.setState({
-            response: error.toString()
-          })
-      }
+      Actions.signup()
     }
+    //   try {
+    //       await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+    //       try {
+    //         this.itemsRef.push({uid: "0LS4HogwucNF5iGOOzs89hZ5LF33", mobile: "3176503226"})
+    //         DismissKeyboard();
+    //
+    //         Actions.home();
+    //       }
+    //
+    //       catch(error){
+    //         Alert.alert(error)
+    //       }
+    //       this.setState({
+    //         response :"Account Created"
+    //       })
+    //   }
+    //
+    //   catch (error) {
+    //       this.setState({
+    //         response: error.toString()
+    //       })
+    //   }
+    // }
 
     async login() {
-
-      try {
-        await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
-        console.log("Logged In!");
-
-        Actions.home();
-      }
-      catch (error) {
-        console.log(error.toString())
-      }
+      Actions.home()
+      // try {
+      //   await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+      //   console.log("Logged In!");
+      //
+      //   Actions.home();
+      // }
+      // catch (error) {
+      //   console.log(error.toString())
+      // }
     }
 
     render() {
@@ -86,11 +87,11 @@ export default class Login0 extends Component {
             <TouchableWithoutFeedback onPress={() => {DismissKeyboard()}}>
                 <Image style = {{height: Dimensions.get('window').height, width: Dimensions.get('window').width}} source = {bkgd}>
                   <View style={s.login_container}>
-                    <View style = {s.login_input_container}>
                       <Kaede
-                          style = {{backgroundColor: 'red'}}
+                          style={{width: Dimensions.get('window').width, margin: 10}}
+                          inputStyle={{width: Dimensions.get('window').width, margin: 10}}
                           label={"Email Address"}
-                          labelStyle={{color: 'white', backgroundColor:'#1856ba' }}
+                          labelStyle={{color: 'white', backgroundColor:'#2AEAC6'}}
                           //iconClass={FontAwesomeIcon}
                           //iconName={"envelope"}
                           //iconColor={"#1856ba"}
@@ -98,13 +99,14 @@ export default class Login0 extends Component {
                           keyboardType="email-address"
                           autoCapitalize="none"
                           //iconBackgroundColor={'#f2a59dbe'}
-                          inputStyle={{ color: 'white', backgroundColor: '#1856ba'}}
+                          inputStyle={{ color: 'white', backgroundColor: '#2AEAC6'}}
                       />
-                    </View>
-                    <View style = {s.login_input_container}>
                       <Kaede
+                          style={{width: Dimensions.get('window').width, marginBottom: 10
+                          }}
+                          inputStyle={{width: Dimensions.get('window').width}}
                           label={"Password"}
-                          labelStyle={{color: 'white', backgroundColor:'#f2a59d' }}
+                          labelStyle={{color: 'white', backgroundColor:'#2AEAC6' }}
                           //iconClass={FontAwesomeIcon}
                           //iconName={"key"}
                           //iconColor={"#1856ba"}
@@ -112,16 +114,15 @@ export default class Login0 extends Component {
                           password={true}
                           autoCapitalize="none"
                           //iconBackgroundColor={'#f2a59dbe'}
-                          inputStyle={{ color: 'white', backgroundColor: '#f2a59d'}}
+                          inputStyle={{ color: 'white', backgroundColor: '#2AEAC6'}}
                       />
-                    </View>
-                    <View style = {s.login_input_container}>
-                      <Button onPress={this.signup} style={s.login_button} textStyle={{fontSize: 18, color: '#1856ba'}}>
+                    <View style = {{height: 50,width: Dimensions.get('window').width}}>
+                      <Button activeOpacity={0.8} onPress={this.signup} style={s.login_button} textStyle={{ fontSize: 18, color: '#2AEAC6'}}>
                           Sign up
                       </Button>
                     </View>
-                    <View style = {s.login_input_container}>
-                      <Button onPress={this.login} style={s.login_button} textStyle={{fontSize: 18,color:'#f2a59d'}}>
+                    <View style = {{shadowRadius: 20, shadowColor: 'red',height: 50,margin:10,width: Dimensions.get('window').width}}>
+                      <Button activeOpacity={0.8} onPress={this.login} style={s.login_button} textStyle={{fontSize: 18,color:'#2AEAC6'}}>
                           Login
                       </Button>
                     </View>

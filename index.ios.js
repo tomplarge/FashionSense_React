@@ -25,11 +25,16 @@ import { Router, Scene } from 'react-native-router-flux';
 import * as firebase from "firebase";
 //import Home0 from "./home0";
 import Login from "./login";
-import Home from "./home"
-import Home0 from "./home0"
+import Home from "./home";
+import Home0 from "./home0";
 import Home1 from "./home1";
-import Firebase from "./firebase"
+import Firebase from "./firebase";
 import HomeScroll from "./homescroll";
+import SignUp from "./signup";
+import HomeDrawer from "./homedrawer"
+import animationStyle from "./animation"
+
+var s = require('./styles')
 
 class FashionSense_React extends Component {
   constructor(props) { //added
@@ -45,11 +50,11 @@ class FashionSense_React extends Component {
 
   render() {
     return (
-      <Router>
-        <Scene key = 'root'>
-          <Scene key = 'login' component = {Login} initial = {true} hideNavBar = {true}/>
-          <Scene key = 'home' component = {Home1} initial = {false} hideNavBar = {true}/>
-          <Scene key = 'homescroll' component = {HomeScroll} initial = {false} hideNavBar = {true} />
+      <Router animationStyle = {animationStyle} >
+        <Scene key = 'root' hideNavBar ={false}>
+          <Scene key = 'login'  component = {Login} hideNavBar = {true} direction = 'leftToRight'/>
+          <Scene key = 'home' title="Home" component = {(props) => <Home1 {...props}/>} hideNavBar = {true} />
+          <Scene key = 'signup' title = 'Sign Up' initial = {true} component = {SignUp} direction = 'rightToLeft' hideNavBar = {true} />
         </Scene>
       </Router>
     )

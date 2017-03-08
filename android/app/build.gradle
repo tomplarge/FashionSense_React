@@ -126,6 +126,10 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-s3')
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-fetch-blob')
+    compile project(':react-native-zip-archive')
     compile project(':rn-camera-roll')
     compile project(':react-native-image-picker')
     compile fileTree(dir: "libs", include: ["*.jar"])

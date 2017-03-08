@@ -94,12 +94,12 @@ export default class ForMe extends Component{
     renderCell(cell) {
         return <View onLayout={event => {
           var width = event.nativeEvent.layout.width;
-         if(this.state.cellWidth!=width){
-         this.setState({cellWidth:width})
-         }
-         if(this.state.cellHeight!=width){
-         this.setState({cellHeight:width})
-         }
+          if(this.state.cellWidth!=width){
+            this.setState({cellWidth:width})
+          }
+          if(this.state.cellHeight!=width){
+            this.setState({cellHeight:width})
+          }
         }}>
             <View style={{width:this.state.cellWidth,height:this.state.cellHeight,justifyContent:'center',backgroundColor:cell.backgroundColor}}
                    resizeMode={Image.resizeMode.stretch}>
