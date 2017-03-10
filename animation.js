@@ -1,52 +1,100 @@
-export const animationStyle = (props) => {
-    const { layout, position, scene } = props;
+function forInitial(props) {
+  const {
+    navigationState,
+    scene,
+  } = props;
 
-    const direction = (scene.navigationState && scene.navigationState.direction) ?
-        scene.navigationState.direction : 'horizontal';
+  const focused = navigationState.index === scene.index;
+  const opacity = focused ? 1 : 0;
+  // If not focused, move the scene to the far away.
+  const translate = focused ? 0 : 1000000;
+  return {
+    opacity,
+    transform: [
+      { translateX: translate },
+      { translateY: translate },
+    ],
+  };
+}
 
-    const index = scene.index;
-    const inputRange = [index - 1, index, index + 1];
-    const width = layout.initWidth;
-    const height = layout.initHeight;
+export function rightToLeftStyle(props) {
+  const {
+    layout,
+    position,
+    scene,
+  } = props;
 
-    const opacity = position.interpolate({
-        inputRange,
-        //default: outputRange: [1, 1, 0.3],
-        outputRange: [1, 1, 0.0],
-    });
+  if (!layout.isMeasured) {
+    return forInitial(props);
+  }
 
-    const scale = position.interpolate({
-        inputRange,
-        //default: outputRange: [1, 1, 0.95],
-        outputRange: [1, 1, 1],
-    });
+  const index = scene.index;
+  const inputRange = [index - 1, index, index + 1];
+  const width = layout.initWidth;
 
-    let translateX = 0;
-    let translateY = 0;
+  const opacity = position.interpolate({
+    inputRange,
+    outputRange: [1, 1, 0],  // Set the last value from 0.3 to 0.
+  });
 
-    switch (direction) {
-        case 'horizontal':
-            translateX = position.interpolate({
-                inputRange,
-                //default: outputRange: [width, 0, -10],
-                outputRange: [width, 0, 0],
-            });
-            break;
-        case 'vertical':
-            translateY = position.interpolate({
-                inputRange,
-                //default: outputRange: [height, 0, -10],
-                outputRange: [height, 0, 0],
-            });
-            break;
-    }
+  const scale = position.interpolate({
+    inputRange,
+    outputRange: [1, 1, 1],
+  });
 
-    return {
-        opacity,
-        transform: [
-            { scale },
-            { translateX },
-            { translateY },
-        ],
-    };
-};
+  const translateY = 0;
+  const translateX = position.interpolate({
+    inputRange,
+    outputRange: [width, 0, -10],
+  });
+
+  return {
+    opacity,
+    transform: [
+      { scale },
+      { translateX },
+      { translateY },
+    ],
+  };
+}
+
+export function leftToRightStyle(props) {
+  const {
+    layout,
+    position,
+    scene,
+  } = props;
+
+  if (!layout.isMeasured) {
+    return forInitial(props);
+  }
+
+  const index = scene.index;
+  const inputRange = [index - 1, index, index + 1];
+  const width = layout.initWidth;
+
+  const opacity = position.interpolate({
+    inputRange,
+    outputRange: [1, 1, 0],  // Set the last value from 0.3 to 0.
+  });
+
+  const scale = position.interpolate({
+    inputRange,
+    outputRange: [1, 1, 1],
+  });
+
+  const translateY = 0;
+  const translateX = position.interpolate({
+    inputRange,
+    outputRange: [-width, 0, -10],
+  });
+
+  return {
+    opacity,
+    transform: [
+      { scale },
+      { translateX },
+      { translateY },
+    ],
+  };
+}

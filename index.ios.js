@@ -31,8 +31,8 @@ import Home1 from "./home1";
 import Firebase from "./firebase";
 import HomeScroll from "./homescroll";
 import SignUp from "./signup";
-import HomeDrawer from "./homedrawer"
-import animationStyle from "./animation"
+import HomeDrawer from "./homedrawer";
+import * as animationStyle from "./animation";
 
 var s = require('./styles')
 
@@ -50,11 +50,11 @@ class FashionSense_React extends Component {
 
   render() {
     return (
-      <Router animationStyle = {animationStyle} >
+      <Router>
         <Scene key = 'root' hideNavBar ={false}>
-          <Scene key = 'login'  component = {Login} hideNavBar = {true} direction = 'leftToRight'/>
-          <Scene key = 'home' title="Home" component = {(props) => <Home1 {...props}/>} hideNavBar = {true} />
-          <Scene key = 'signup' title = 'Sign Up' initial = {true} component = {SignUp} direction = 'rightToLeft' hideNavBar = {true} />
+          <Scene key = 'login'  component = {Login} initial = {true} hideNavBar = {true} animationStyle = {animationStyle.leftToRightStyle} direction = 'leftToRight'/>
+          <Scene key = 'home' title="Home" component = {(props) => <Home1 {...props}/>} animationStyle = {animationStyle.leftToRightStyle} hideNavBar = {true} />
+          <Scene key = 'signup' title = 'Sign Up'  component = {SignUp} direction = 'rightToLeft' hideNavBar = {true} animationStyle = {animationStyle.rightToLeftStyle}/>
         </Scene>
       </Router>
     )

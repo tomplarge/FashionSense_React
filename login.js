@@ -8,7 +8,8 @@ import {
     TouchableWithoutFeedback,
     Image,
     PixelRatio,
-    Alert
+    Alert,
+    Shadow
 } from "react-native";
 
 import React, {Component} from "react";
@@ -121,11 +122,13 @@ export default class Login0 extends Component {
                           Sign up
                       </Button>
                     </View>
-                    <View style = {{shadowRadius: 20, shadowColor: 'red',height: 50,margin:10,width: Dimensions.get('window').width}}>
-                      <Button activeOpacity={0.8} onPress={this.login} style={s.login_button} textStyle={{fontSize: 18,color:'#2AEAC6'}}>
-                          Login
-                      </Button>
-                    </View>
+                    <Shadow>
+                      <View style = {{shadowRadius: 20, shadowColor: 'red',height: 50,margin:10,width: Dimensions.get('window').width}}>
+                        <Button activeOpacity={0.8} onPress={this.login} style={s.login_button} textStyle={{fontSize: 18,color:'#2AEAC6'}}>
+                            Login
+                        </Button>
+                      </View>
+                    </Shadow>
                       <View>
                           <Text style={s.login_response}>{this.state.response}</Text>
                       </View>
